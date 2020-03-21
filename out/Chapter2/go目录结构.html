@@ -1,0 +1,434 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>第1节 go项目结构 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="../Chapter1/安装go.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../Chapter1/安装go.html">
+            
+                <a href="../Chapter1/安装go.html">
+            
+                    
+                    第一章 安装及其使用
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../Chapter1/安装go.html">
+            
+                <a href="../Chapter1/安装go.html">
+            
+                    
+                    第1节：安装go环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../Chapter1/Go语言规范汇总.html">
+            
+                <a href="../Chapter1/Go语言规范汇总.html">
+            
+                    
+                    第2节：Go语言规范汇总
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../Chapter1/安装go.html">
+            
+                <a href="../Chapter1/安装go.html">
+            
+                    
+                    第二章 开始go编程之旅
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.3.1" data-path="go目录结构.html">
+            
+                <a href="go目录结构.html">
+            
+                    
+                    第1节 go项目结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >第1节 go项目结构</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x7B2C;1&#x8282;-go&#x9879;&#x76EE;&#x76EE;&#x5F55;">&#x7B2C;1&#x8282; go&#x9879;&#x76EE;&#x76EE;&#x5F55;</h1>
+<p>&#x521A;&#x5F00;&#x59CB;&#x770B;go&#x8BED;&#x8A00;&#x7684;&#x65F6;&#x5019; &#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x4F1A;&#x7591;&#x60D1; &#x9879;&#x76EE;&#x76EE;&#x5F55;&#x662F;&#x600E;&#x4E48;&#x60C5;&#x51B5;&#xFF0C;&#x9879;&#x76EE;&#x8DEF;&#x5F84;&#x600E;&#x4E48;&#x89C4;&#x5212;&#xFF0C;&#x5BFC;&#x5305;&#x600E;&#x4E48;&#x5BFC;</p>
+<p>&#x9879;&#x76EE;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#x5982;&#x4F55;&#x7EC4;&#x7EC7;&#xFF0C;&#x4E00;&#x822C;&#x8BED;&#x8A00;&#x90FD;&#x662F;&#x6CA1;&#x6709;&#x89C4;&#x5B9A;&#x3002;&#x4F46;Go&#x8BED;&#x8A00;&#x8FD9;&#x65B9;&#x9762;&#x505A;&#x4E86;&#x89C4;&#x5B9A;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x4FDD;&#x6301;&#x4E00;&#x81F4;&#x6027;&#xFF0C;&#x505A;&#x5230;&#x7EDF;&#x4E00;&#x3001;&#x89C4;&#x5219;&#x5316;&#x6BD4;&#x8F83;&#x660E;&#x786E;&#x3002;</p>
+<h4 id="1&#x3001;&#x4E00;&#x822C;&#x7684;&#xFF0C;&#x4E00;&#x4E2A;go&#x9879;&#x76EE;&#x5728;gopath&#x4E0B;&#xFF0C;&#x4F1A;&#x6709;&#x5982;&#x4E0B;&#x4E09;&#x4E2A;&#x76EE;&#x5F55;&#xFF1A;">1&#x3001;&#x4E00;&#x822C;&#x7684;&#xFF0C;&#x4E00;&#x4E2A;Go&#x9879;&#x76EE;&#x5728;GOPATH&#x4E0B;&#xFF0C;&#x4F1A;&#x6709;&#x5982;&#x4E0B;&#x4E09;&#x4E2A;&#x76EE;&#x5F55;&#xFF1A;</h4>
+<pre><code>|--bin
+
+|--pkg
+
+|--src
+</code></pre><p>&#x5176;&#x4E2D;&#xFF0C;bin&#x5B58;&#x653E;&#x7F16;&#x8BD1;&#x540E;&#x7684;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#xFF1B;pkg&#x5B58;&#x653E;&#x7F16;&#x8BD1;&#x540E;&#x7684;&#x5305;&#x6587;&#x4EF6;&#xFF1B;src&#x5B58;&#x653E;&#x9879;&#x76EE;&#x6E90;&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x4E00;&#x822C;&#xFF0C;bin&#x548C;pkg&#x76EE;&#x5F55;&#x53EF;&#x4EE5;&#x4E0D;&#x521B;&#x5EFA;&#xFF0C;go&#x547D;&#x4EE4;&#x4F1A;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#xFF08;&#x5982; go install&#xFF09;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x521B;&#x5EFA;src&#x76EE;&#x5F55;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;pkg&#x76EE;&#x5F55;&#xFF0C;&#x66FE;&#x7ECF;&#x6709;&#x4EBA;&#x95EE;&#xFF1A;&#x6211;&#x628A;Go&#x4E2D;&#x7684;&#x5305;&#x653E;&#x5165;pkg&#x4E0B;&#x9762;&#xFF0C;&#x600E;&#x4E48;&#x4E0D;&#x884C;&#x554A;&#xFF1F;&#x4ED6;&#x76F4;&#x63A5;&#x628A;Go&#x5305;&#x7684;&#x6E90;&#x6587;&#x4EF6;&#x653E;&#x5165;&#x4E86;pkg&#x4E2D;&#x3002;</p>
+<p>&#x8FD9;&#x663E;&#x7136;&#x662F;&#x4E0D;&#x5BF9;&#x7684;&#x3002;pkg&#x4E2D;&#x7684;&#x6587;&#x4EF6;&#x662F;Go&#x7F16;&#x8BD1;&#x751F;&#x6210;&#x7684;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x624B;&#x52A8;&#x653E;&#x8FDB;&#x53BB;&#x7684;&#x3002;&#xFF08;&#x4E00;&#x822C;&#x6587;&#x4EF6;&#x540E;&#x7F00;.a&#xFF09;</p>
+<p>&#x5BF9;&#x4E8E;src&#x76EE;&#x5F55;&#xFF0C;&#x5B58;&#x653E;&#x6E90;&#x6587;&#x4EF6;&#xFF0C;Go&#x4E2D;&#x6E90;&#x6587;&#x4EF6;&#x4EE5;&#x5305;&#xFF08;package&#xFF09;&#x7684;&#x5F62;&#x5F0F;&#x7EC4;&#x7EC7;&#x3002;&#x901A;&#x5E38;&#xFF0C;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x5305;&#x5C31;&#x5728;src&#x76EE;&#x5F55;&#x4E2D;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x3002;</p>
+<h4 id="2&#x3001;&#x4E3E;&#x4F8B;&#x8BF4;&#x660E;">2&#x3001;&#x4E3E;&#x4F8B;&#x8BF4;&#x660E;</h4>
+<p>&#x6BD4;&#x5982;&#xFF1A;&#x6211;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x9879;&#x76EE;&#xFF0C;myfirst&#xFF0C;&#x5F00;&#x59CB;&#x7684;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>myfirst--
+    |--src
+</code></pre><p>&#x4E3A;&#x4E86;&#x7F16;&#x8BD1;&#x65B9;&#x4FBF;&#xFF0C;&#x589E;&#x52A0;&#x4E86;&#x4E00;&#x4E2A;install&#x6587;&#x4EF6;&#xFF0C;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#xFF1A;</p>
+<pre><code>myfirst
+
+    |&#x2014;install.bat
+    |&#x2014;src
+</code></pre><p>&#x4E4B;&#x6240;&#x4EE5;&#x52A0;&#x4E0A;&#x8FD9;&#x4E2A;install.bat&#xFF0C;&#x662F;&#x4E0D;&#x7528;&#x914D;&#x7F6E;GOPATH&#xFF08;&#x907F;&#x514D;&#x65B0;&#x589E;&#x4E00;&#x4E2A;GO&#x9879;&#x76EE;&#x5C31;&#x8981;&#x5F80;GOPATH&#x4E2D;&#x589E;&#x52A0;&#x4E00;&#x4E2A;&#x8DEF;&#x5F84;&#xFF09;</p>
+<p>&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x589E;&#x52A0;&#x4E00;&#x4E2A;&#x5305;&#xFF1A;config&#x548C;&#x4E00;&#x4E2A;main&#x7A0B;&#x5E8F;&#x3002;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><a href="javascript:void(0" target="_blank"><img src="https://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a>;)</p>
+<pre><code>myfirst
+    |&#x2014;instal.bat
+    |&#x2014;src
+        |-- config    
+            |-- config.go
+|&#x2014;myfirst        
+            |-- main.go
+</code></pre><p><a href="javascript:void(0" target="_blank"><img src="https://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a>;)</p>
+<p><a href="http://images2015.cnblogs.com/blog/10966/201603/10966-20160310165930804-2008554900.png" target="_blank"><img src="https://images2015.cnblogs.com/blog/10966/201603/10966-20160310165932069-1323627039.png" alt="image"></a></p>
+<p>&#x6CE8;&#x610F;&#xFF0C;config.go&#x4E2D;&#x7684;package&#x540D;&#x79F0;&#x5FC5;&#x987B;&#x6700;&#x597D;&#x548C;&#x76EE;&#x5F55;config&#x4E00;&#x81F4;&#xFF0C;&#x800C;&#x6587;&#x4EF6;&#x540D;&#x53EF;&#x4EE5;&#x968F;&#x4FBF;&#x3002;main.go&#x8868;&#x793A;main&#x5305;&#xFF0C;&#x6587;&#x4EF6;&#x540D;&#x5EFA;&#x8BAE;&#x4E3A;main.go&#x3002;&#xFF08;&#x6CE8;&#xFF1A;&#x4E0D;&#x4E00;&#x81F4;&#x65F6;&#xFF0C;&#x751F;&#x6210;&#x7684;.a&#x6587;&#x4EF6;&#x540D;&#x548C;&#x76EE;&#x5F55;&#x540D;&#x4E00;&#x81F4;&#xFF0C;&#x8FD9;&#x6837;&#xFF0C;&#x5728;import &#x65F6;&#xFF0C;&#x5E94;&#x8BE5;&#x662F;&#x76EE;&#x5F55;&#x540D;&#xFF0C;&#x800C;&#x5F15;&#x7528;&#x5305;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x5305;&#x540D;&#x3002;&#x4F8B;&#x5982;&#xFF1A;&#x76EE;&#x5F55;&#x4E3A;myconfig&#xFF0C;&#x5305;&#x540D;&#x4E3A;config&#xFF0C;&#x5219;&#x751F;&#x4EA7;&#x7684;&#x9759;&#x6001;&#x5305;&#x6587;&#x4EF6;&#x662F;&#xFF1A;myconfig.a&#xFF0C;&#x5F15;&#x7528;&#x8BE5;&#x5305;&#xFF1A;import &#x201C;myconfig&#x201D;&#xFF0C;&#x4F7F;&#x7528;&#x5305;&#x4E2D;&#x6210;&#x5458;&#xFF1A;config.LoadConfig()&#xFF09;</p>
+<p>onfig.go&#x548C;main.go&#x7684;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;
+config.go&#x4EE3;&#x7801;</p>
+<p><a href="javascript:void(0" target="_blank"><img src="https://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a>;)</p>
+<pre><code>package config
+
+
+func LoadConfig() {
+
+
+
+}
+</code></pre><p><a href="javascript:void(0" target="_blank"><img src="https://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a>;)</p>
+<p><a href="http://images2015.cnblogs.com/blog/10966/201603/10966-20160310165932804-1047384176.png" target="_blank"><img src="https://images2015.cnblogs.com/blog/10966/201603/10966-20160310165933132-958238658.png" alt="image"></a></p>
+<p>main.go&#x4EE3;&#x7801;</p>
+<p><a href="javascript:void(0" target="_blank"><img src="https://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a>;)</p>
+<pre><code>package main
+
+
+import (
+
+    &quot;config&quot;
+
+    &quot;fmt&quot;
+
+)
+
+
+func main() {
+
+    config.LoadConfig()
+
+    fmt.Println(&quot;Hello, GO!&quot;)
+
+}
+</code></pre><p><a href="javascript:void(0" target="_blank"><img src="https://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a>;)</p>
+<h4 id=""><a href="http://images2015.cnblogs.com/blog/10966/201603/10966-20160310165933585-165152776.png" target="_blank"><img src="https://images2015.cnblogs.com/blog/10966/201603/10966-20160310165933913-1534793964.png" alt="image"></a></h4>
+<p>install.bat&#x914D;&#x7F6E;&#x8BF4;&#x660E;&#xFF1A;</p>
+<p><a href="javascript:void(0" target="_blank"><img src="https://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a>;)</p>
+<pre><code>@echo off
+
+setlocal
+
+if exist install.bat goto ok
+echo install.bat must be run from its folder
+goto end
+
+: ok
+
+set OLDGOPATH=%GOPATH%
+set GOPATH=%~dp0
+
+gofmt -w src
+
+go install myfirst
+
+:end
+echo finished
+</code></pre><p><a href="javascript:void(0" target="_blank"><img src="https://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a>;)</p>
+<p><a href="http://images2015.cnblogs.com/blog/10966/201603/10966-20160310170606475-18221860.png" target="_blank"><img src="https://images2015.cnblogs.com/blog/10966/201603/10966-20160310170607382-1611485406.png" alt="image"></a></p>
+<p>&#x6CE8;&#xFF1A;&#x5192;&#x53F7;&#x548C;ok&#x4E4B;&#x95F4;&#x4E0D;&#x5E94;&#x8BE5;&#x6709;&#x7A7A;&#x683C;&#x3002;</p>
+<p>&#x6253;&#x5F00;&#x547D;&#x4EE4;&#x884C;&#xFF0C;&#x627E;&#x5230;d:\myfirst&#x76EE;&#x5F55;&#xFF0C;&#x8F93;&#x5165;install&#xFF0C;&#x6267;&#x884C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><a href="http://images2015.cnblogs.com/blog/10966/201603/10966-20160310170607913-9657041.png" target="_blank"><img src="https://images2015.cnblogs.com/blog/10966/201603/10966-20160310170608319-251542272.png" alt="image"></a></p>
+<p><a href="http://images2015.cnblogs.com/blog/10966/201603/10966-20160310170610085-603062237.png" target="_blank"><img src="https://images2015.cnblogs.com/blog/10966/201603/10966-20160310170610569-1724711572.png" alt="image"></a></p>
+<p>&#x6267;&#x884C;&#x5B8C;&#x4E4B;&#x540E;&#xFF0C;&#x751F;&#x6210;pkg&#x76EE;&#x5F55;&#xFF1A;</p>
+<p><a href="http://images2015.cnblogs.com/blog/10966/201603/10966-20160310170611147-333084680.png" target="_blank"><img src="https://images2015.cnblogs.com/blog/10966/201603/10966-20160310170611757-479662295.png" alt="image"></a></p>
+<p>&#x547D;&#x4EE4;&#x884C;&#x63D0;&#x793A;&#xFF1A;config.loadConfig&#x672A;&#x5B9A;&#x4E49;&#x3002;</p>
+<p>&#x7ECF;&#x8FC7;&#x53CD;&#x590D;&#x91CD;&#x8BD5;&#xFF0C;install.bat&#x4FEE;&#x6539;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><a href="javascript:void(0" target="_blank"><img src="https://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a>;)</p>
+<pre><code>@echo off
+
+setlocal
+
+if exist install.bat goto ok
+echo install.bat must be run from its folder
+goto end
+
+: ok
+
+set OLDGOPATH=%GOPATH%
+set GOPATH=%cd%
+
+gofmt -w src
+
+go install myfirst
+
+set GOPATH=OLDGOPATH
+
+:end
+echo finished
+</code></pre><p><a href="javascript:void(0" target="_blank"><img src="https://common.cnblogs.com/images/copycode.gif" alt="&#x590D;&#x5236;&#x4EE3;&#x7801;"></a>;)</p>
+<p>config.go&#x4FEE;&#x6539;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>package config
+
+func LoadConfig() {
+
+}
+</code></pre><p>&#x51FD;&#x6570;&#x540D;&#x79F0;&#x4E3A;&#x5927;&#x5199;&#x5F00;&#x5934;&#x3002;</p>
+<p><a href="http://images2015.cnblogs.com/blog/10966/201603/10966-20160310170613085-1461026442.png" target="_blank"><img src="https://images2015.cnblogs.com/blog/10966/201603/10966-20160310170614241-1273632500.png" alt="image"></a></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../Chapter1/安装go.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 第二章 开始go编程之旅">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"第1节 go项目结构","level":"1.3.1","depth":2,"previous":{"title":"第二章 开始go编程之旅","level":"1.3","depth":1,"path":"Chapter1/安装go.md","ref":"Chapter1/安装go.md","articles":[{"title":"第1节 go项目结构","level":"1.3.1","depth":2,"path":"Chapter2/go目录结构.md","ref":"Chapter2/go目录结构.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter2/go目录结构.md","mtime":"2020-03-21T14:42:48.290Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-21T14:45:37.949Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
