@@ -53,6 +53,8 @@ go get github.com/golang/protobuf/protoc-gen-go
 
 **然后把GOPATH的bin目录添加到环境变量的PATH下**
 
+# server
+
 新建目录
 
 ├─grpcpro
@@ -134,6 +136,68 @@ type ProdService struct {
 func (this *ProdService) GetProdStock(ctx context.Context, in *ProdRequest,) (*ProdResponse, error) {
 
 	return &ProdResponse{ProdStock:20}, nil
+}
+
+```
+
+E:\go_path\go_st\grpc\grpcpro\server.go
+
+```go
+package main
+
+import (
+	"google.golang.org/grpc"
+	"learn/grpc/grpcpro/services"
+	"net"
+)
+
+func main() {
+	rpcServer := grpc.NewServer()
+	services.RegisterProdServiceServer(rpcServer, new(services.ProdService))
+	lis, _ := net.Listen("tcp", ":8081")
+	rpcServer.Serve(lis)
+}
+
+```
+
+# client
+
+目录如下：
+
+```
+├─client                                                                                 │  └─services     
+```
+
+E:\go_path\go_st\grpc\client\services\Prod.pb.go这个文件的内容是server里面的执行命令生成的pb文件
+
+主要的client程序，不使用https
+
+E:\go_path\go_st\grpc\client\main.go
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"google.golang.org/grpc"
+	"learn/grpc/client/services"
+	"log"
+)
+
+func main() {
+	conn, err := grpc.Dial(":8081", grpc.WithInsecure())
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer conn.Close()
+
+	prodClient := services.NewProdServiceClient(conn)
+	prodRes, err := prodClient.GetProdStock(context.Background(), &services.ProdRequest{ProdId: 12})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(prodRes)
 }
 
 ```
