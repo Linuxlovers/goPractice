@@ -202,3 +202,8 @@ func main() {
 
 ```
 
+到此可以运行server 和main
+
+![image-20200329235519907](grpc入门.assets/image-20200329235519907.png)
+
+![image-20200329235559779](grpc入门.assets/image-20200329235559779.png)
