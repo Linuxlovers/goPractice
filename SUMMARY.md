@@ -8,6 +8,4 @@
 * [第1节 go项目结构](Chapter2\go目录结构.md)
   * [ chan基本用法](Chapter2\chan基本用法.md)
 
-[第二章 GRPC](Chapter1/安装go.md)
-
-* [第1节 grpc入门](grpc\grpc入门.md)
+* [百度云资料](data\百度网盘资料.md)
